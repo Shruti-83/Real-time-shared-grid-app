@@ -6,7 +6,7 @@ import Grid from "./components/Grid";
 import Leaderboard from "./components/Leaderboard";
 import StatsBar from "./components/StatsBar";
 
-const COOLDOWN_MS = 1800;
+
 const COLORS = [
   "#f5a623", "#7ed321", "#4a90e2", "#d0021b",
   "#9013fe", "#00b8d9", "#ff6b6b", "#50fa7b",
@@ -23,6 +23,7 @@ function App() {
   const cooldownEndRef = useRef(0);
   const [gameOver, setGameOver] = useState(null);
 const isCoolingDown = useRef(false); 
+const [cooldownMs, setCooldownMs] = useState(0);
   // ── JOIN & SOCKET SETUP ───────────────────────────────────
   useEffect(() => {
   const getOrCreateIdentity = () => {
@@ -52,6 +53,7 @@ const isCoolingDown = useRef(false);
     setGrid([...data.grid]);
     setLeaderboard([...data.leaderboard]);
     setStats({ ...data.stats });
+    setCooldownMs(data.cooldownMs); 
   });
 
   socket.on("block_captured", ({ blockIndex, ownerId, ownerColor, ownerName, leaderboard, stats }) => {
@@ -123,7 +125,7 @@ socket.on("connect", () => {
 const startCooldown = () => {
   if (cdTimerRef.current) clearInterval(cdTimerRef.current);
   isCoolingDown.current = true;
-  cooldownEndRef.current = Date.now() + COOLDOWN_MS;
+  cooldownEndRef.current = Date.now() + cooldownMs;
 
   cdTimerRef.current = setInterval(() => {
     const rem = cooldownEndRef.current - Date.now();
