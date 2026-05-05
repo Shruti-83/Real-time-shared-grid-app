@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useEffect, useRef, useState } from "react";
-import socket from "./socket";
+import socket from "./socket.js";
 import Navbar from "./components/Navbar";
 import Grid from "./components/Grid";
 import Leaderboard from "./components/Leaderboard";
