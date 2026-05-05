@@ -1,20 +1,25 @@
-// src/components/Cell.jsx
-function Cell({ cell, onClick }) {
+import { useRef } from "react";
+
+function Cell({ cell, onClick, size }) {
+  const ref = useRef(null);
+
   return (
     <div
+      ref={ref}
       onClick={onClick}
-      title={cell?.ownerName || "Unclaimed"}
+      title={cell?.ownerName ? `Owned by ${cell.ownerName}` : "Unclaimed — click to capture"}
       style={{
-        width: "15px",
-        height: "15px",
+        width: `${size}px`,
+        height: `${size}px`,
         backgroundColor: cell?.ownerColor || "#111820",
         cursor: "pointer",
         borderRadius: "1px",
-        transition: "transform 0.1s, filter 0.1s",
+        transition: "transform 0.08s ease, filter 0.08s ease",
+        flexShrink: 0,
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "scale(1.35)";
-        e.currentTarget.style.filter = "brightness(1.5)";
+        e.currentTarget.style.transform = "scale(1.4)";
+        e.currentTarget.style.filter = "brightness(1.6)";
         e.currentTarget.style.zIndex = "10";
         e.currentTarget.style.position = "relative";
       }}
