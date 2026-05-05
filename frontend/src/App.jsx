@@ -4,7 +4,7 @@ import socket from "./socket.js";
 import Navbar from "./components/Navbar";
 import Grid from "./components/Grid";
 import Leaderboard from "./components/Leaderboard";
-import StatsBar from "./components/StatsBar";
+import Statsbar from "./components/Statsbar";
 
 
 const COLORS = [
@@ -171,7 +171,7 @@ const startCooldown = () => {
       <Navbar user={user} online={online} cooldown={cooldown} />
 
       <main style={{ padding: "16px 20px" }}>
-        <StatsBar
+        <Statsbar
           stats={stats}
           online={online}
           cooldown={cooldown}

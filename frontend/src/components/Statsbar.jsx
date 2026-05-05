@@ -1,5 +1,5 @@
 // src/components/StatsBar.jsx
-function StatsBar({ stats, online, cooldown, yourCount }) {
+function Statsbar({ stats, online, cooldown, yourCount }) {
   return (
     <div
       style={{
@@ -72,4 +72,4 @@ function StatsBar({ stats, online, cooldown, yourCount }) {
   );
 }
 
-export default StatsBar;
+export default Statsbar;
