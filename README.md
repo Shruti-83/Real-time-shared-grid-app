@@ -82,8 +82,8 @@ frontend/
 ### 1️⃣ Clone repository
 
 ```bash
-git clone https://github.com/your-username/real-time-grid.git
-cd real-time-grid
+git clone https://github.com/Shruti-83/Real-time-shared-grid-app.git
+cd Real-time-shared-grid-app
 ```
 
 ---
