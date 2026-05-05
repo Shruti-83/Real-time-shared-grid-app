@@ -37,13 +37,17 @@ registerSocketHandlers(io);
 
 // ── Boot sequence ────────────────────────────────────────────────────────────
 const start = async () => {
-  await connectDB();          // 1. Connect MongoDB
-  await initGridState();      // 2. Seed / hydrate in-memory grid
-  httpServer.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-    console.log(`📡 Socket.io ready`);
-    console.log(`🗄️  REST API at http://localhost:${PORT}/api`);
-  });
+  try {
+    await connectDB();
+    await initGridState();
+
+    httpServer.listen(PORT, () => {
+      console.log(`🚀 Server running on ${PORT}`);
+    });
+
+  } catch (err) {
+    console.error("❌ Startup error:", err);
+  }
 };
 
 start();
